@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-List.create(title: "West Sweden Road Trip", excerpt: "A cool road trip with stops in harbors of the coast")
-List.create(title: "Must have equipment for the outdoor photographer", excerpt: "My selection of gear for modern outdoor photography")
+List.create(title: "Interesting Project Ideas", excerpt: "A shortlist of interesting ideas and concepts for projects")
+List.create(title: "Must Learn List", excerpt: "My selection of frameworks/languages to learn in 2019")
