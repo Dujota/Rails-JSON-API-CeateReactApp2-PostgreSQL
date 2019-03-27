@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import List from './List';
+import NewListForm from './NewListForm';
 
 class ListsContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lists: [],
-    };
-  }
+  state = {
+    lists: [],
+  };
 
-  componentDidMount() {
+  componentDidMount = () => {
+    this.loadLists();
+  };
+
+  loadLists = () =>
     axios
       .get('api/v1/lists.json')
       .then(response => {
@@ -20,16 +22,19 @@ class ListsContainer extends Component {
         });
       })
       .catch(error => console.log(error));
-  }
 
   render() {
     const { lists } = this.state;
     return (
-      <div className="lists-container">
-        {lists.map(list => (
-          <List list={list} key={list.id} />
-        ))}
-      </div>
+      <React.Fragment>
+        <div className="lists-container">
+          {lists.map(list => (
+            <List list={list} key={list.id} />
+          ))}
+        </div>
+
+        <NewListForm onNewList={this.addNewList} />
+      </React.Fragment>
     );
   }
 }
