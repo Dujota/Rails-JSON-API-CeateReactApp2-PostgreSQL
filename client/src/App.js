@@ -10,6 +10,7 @@ class App extends Component {
           <h1 className="App-title">
             Ruby API + Create-React-App-2 + PostgresQL
           </h1>
+          <h3> CRUD for Simple List having Items with a title and excerpt </h3>
         </header>
         <ListsContainer />
       </div>
