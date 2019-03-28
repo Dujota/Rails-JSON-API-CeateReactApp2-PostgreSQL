@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NewListForm = ({ onNewList = f => f }) => {
+const NewListForm = ({ onNewList }) => {
   let title;
   let excerpt;
   const submit = e => {
     e.preventDefault();
-    onNewList(_title.value, _excerpt.value);
+    onNewList(title.value, excerpt.value);
     title.value = '';
     excerpt.value = '';
     title.focus();
