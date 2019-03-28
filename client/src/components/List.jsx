@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const List = ({ list, onRemoveList }) => (
+const List = ({ list, onRemoveList, editingList }) => (
   <div>
     <div className="single-listItem" key={list.id}>
       <h4>{list.title}</h4>
@@ -13,6 +13,15 @@ const List = ({ list, onRemoveList }) => (
         }}
       >
         Remove
+      </button>
+      {` | `}
+      <button
+        type="button"
+        onClick={() => {
+          editingList(list.id);
+        }}
+      >
+        Edit
       </button>
     </div>
   </div>

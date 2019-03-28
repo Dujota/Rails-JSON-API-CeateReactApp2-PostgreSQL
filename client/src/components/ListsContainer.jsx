@@ -1,16 +1,15 @@
 /* eslint-disable no-unused-expressions */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import List from './List';
 import NewListForm from './NewListForm';
+import EditListForm from './EditListForm';
 
-class ListsContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lists: [],
-    };
-  }
+class ListsContainer extends PureComponent {
+  state = {
+    lists: [],
+    editingListId: null,
+  };
 
   componentDidMount = () => {
     this.loadLists;
@@ -49,14 +48,52 @@ class ListsContainer extends Component {
     });
   };
 
+  editingList = id => {
+    this.setState({ editingListId: id });
+  };
+
+  editList = (id, title, excerpt) => {
+    axios
+      .put(`/api/v1/lists/${id}`, {
+        list: {
+          title,
+          excerpt,
+        },
+      })
+      .then(response => {
+        console.log(response);
+        const { lists } = this.state;
+        // TODO FIX THE EDIT FN
+        lists[id - 1] = { id, title, excerpt };
+        this.setState(() => ({
+          lists,
+          editingListId: null,
+        }));
+      })
+      .catch(error => console.log(error));
+  };
+
   render() {
-    const { lists } = this.state;
+    const { lists, editingListId } = this.state;
     return (
       <React.Fragment>
         <div className="lists-container">
-          {lists.map(list => (
-            <List list={list} key={list.id} onRemoveList={this.removeList} />
-          ))}
+          {lists.map(list =>
+            editingListId === list.id ? (
+              <EditListForm
+                list={list}
+                key={list.id}
+                editList={this.editList}
+              />
+            ) : (
+              <List
+                list={list}
+                key={list.id}
+                onRemoveList={this.removeList}
+                editingList={this.editingList}
+              />
+            )
+          )}
         </div>
 
         <NewListForm onNewList={this.addNewList} />
