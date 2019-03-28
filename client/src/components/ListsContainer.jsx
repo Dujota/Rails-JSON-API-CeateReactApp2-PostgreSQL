@@ -62,13 +62,12 @@ class ListsContainer extends PureComponent {
       })
       .then(response => {
         console.log(response);
-        const { lists } = this.state;
-        // TODO FIX THE EDIT FN
-        lists[id - 1] = { id, title, excerpt };
         this.setState(() => ({
-          lists,
           editingListId: null,
         }));
+      })
+      .then(() => {
+        this.loadLists;
       })
       .catch(error => console.log(error));
   };
