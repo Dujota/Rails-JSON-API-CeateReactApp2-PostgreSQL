@@ -7,7 +7,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Hello Hiplyst!</h1>
+          <h1 className="App-title">
+            Ruby API + Create-React-App-2 + PostgresQL
+          </h1>
         </header>
         <ListsContainer />
       </div>
