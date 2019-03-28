@@ -1,0 +1,16 @@
+{
+  "name": "list-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Dujota/list-app-railsAPi-React.git",
+  "author": "Denis <ddujota@internationalsafety.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "11.6.0"
+  },
+  "scripts": {
+    "build": "cd client && yarn install && yarn run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "yarn run build && yarn run deploy && echo 'Client built!'"
+  }
+}
